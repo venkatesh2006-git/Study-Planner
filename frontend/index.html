@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Planner | AI-Powered Scheduling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="light-mode">
+    <div class="glass-bg"></div>
+    <div class="container">
+        <header>
+            <h1>Smart Study Planner <span class="ai-badge">AI-Powered</span></h1>
+            <button id="themeToggle" class="btn-icon">🌙 Dark Mode</button>
+        </header>
+
+        <div class="main-grid">
+            <section class="card input-section">
+                <h2>Plan Configuration</h2>
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="dailyLimit">Daily Study Limit (Hours)</label>
+                        <input type="number" id="dailyLimit" value="4" min="1" max="16">
+                    </div>
+                    <div class="col">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <h2>Add Subjects</h2>
+                <form id="subjectForm">
+                    <div class="form-group">
+                        <label for="subjectName">Subject Name</label>
+                        <input type="text" id="subjectName" required placeholder="e.g. Mathematics">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="difficulty">Difficulty (1-5)</label>
+                            <input type="number" id="difficulty" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="col">
+                            <label for="examDate">Exam Date</label>
+                            <input type="date" id="examDate" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Subject</button>
+                </form>
+
+                <div class="subject-list-container">
+                    <h3>Your Subjects</h3>
+                    <ul id="subjectList"></ul>
+                </div>
+                
+                <button id="generateBtn" class="btn-generate">✨ Generate Smart Schedule</button>
+            </section>
+
+            <section class="card results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Your Optimized Schedule</h2>
+                    <div class="actions">
+                        <button id="downloadPdf" class="btn-secondary">📥 Download PDF</button>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="studyChart"></canvas>
+                </div>
+
+                <div id="scheduleGrid" class="schedule-grid">
+                    <!-- Schedule populates here dynamically -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
